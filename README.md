@@ -1,1 +1,2 @@
 # Sequence
+Sequence is a Single Player Card Game. As the name suggests, the player has to arrange the Deck of Cards of a particular suit in sequence starting from Ace to King. If the player selects a card out of sequence then an alert message would be displayed but if the player arranges all the card of a suit in order then the game is completed successfully. There are 4 possible suits (♣ Clubs, ♦ Diamonds, ♥ Hearts, ♠ Spades) and 13 numbers (Ace, 2, 3, 4, 5, 6, 7, 8, 9, 10, Jack, Queen, King).
