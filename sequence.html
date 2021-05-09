@@ -1,0 +1,934 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<style>
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+body {
+  height: 100vh;
+  display: flex; 
+}
+.memory-game {
+  width: 640px;
+  height: 640px;
+  margin: auto;
+  display: flex;
+  flex-wrap: wrap;
+  perspective: 1000px;
+} 
+.memory-card {
+  width: calc(25% - 10px);
+  height: calc(33.333% - 10px);
+  margin: 5px;
+  position: relative;
+  transform: scale(1);
+  transform-style: preserve-3d;
+  transition: transform .5s;
+  box-shadow: 1px 1px 1px rgba(0,0,0,.3);
+}
+.memory-card:active {
+  transform: scale(0.97);
+  transition: transform .2s;
+}
+.memory-card.flip {
+  transform: rotateY(180deg);
+}
+.front-face,
+.back-face {
+  width: 100%;
+  height: 100%;
+  padding: 20px;
+  position: absolute;
+  border-radius: 5px;
+  background: white;
+  backface-visibility: hidden;
+}
+.front-face {
+  transform: rotateY(180deg);
+}
+.seq{
+  width: 640px;
+  height: 640px;
+  margin: auto;
+  flex-wrap: wrap;
+  perspective: 1000px;
+}
+.sequence{
+  width: calc(25% - 10px);
+  height: calc(33.333% - 10px);
+  margin: 10px;
+  position: relative;
+  transform: scale(1);
+  transform-style: preserve-3d;
+  transition: transform .5s;
+  box-shadow: 1px 1px 1px rgba(0,0,0,.3);
+}
+.ace{
+  width: 100%;
+  height: 100%;
+  padding: 20px;
+  position: absolute;
+  border-radius: 5px;
+  background: white;
+  backface-visibility: hidden;
+}
+</style>
+
+<script>
+    
+        let card1s=1;
+        let card1d=1;
+        let card1c=1;
+        let card1h=1;
+
+        const hi1s=()=>{
+        if(card1s==1)
+        {
+            document.images["ace1"].src="/Users/prakshi/Downloads/Card-Game/img/2_of_spade.png";
+            document.images["img1s"].src="/Users/prakshi/Downloads/Card-Game/img/card_reverse.png";
+            card1s++;   
+        }
+        else{
+            alert("wrong choice");    
+        }
+        
+        }
+
+        const hi2s=()=>{
+        if(card1s==2)
+        {
+            document.images["ace1"].src="/Users/prakshi/Downloads/Card-Game/img/3_of_spade.png";
+            document.images["img2s"].src="/Users/prakshi/Downloads/Card-Game/img/card_reverse.png";
+            card1s++;
+        }
+        else{
+           alert("wrong choice");
+        }
+        
+        }
+
+        const hi3s=()=>{
+        if(card1s==3)
+        {
+            document.images["ace1"].src="/Users/prakshi/Downloads/Card-Game/img/4_of_spade.png";
+            document.images["img3s"].src="/Users/prakshi/Downloads/Card-Game/img/card_reverse.png";
+            card1s++;
+        }
+        else{
+           alert("wrong choice");
+        }
+        
+        }
+
+        const hi4s=()=>{
+        if(card1s==4)
+        {
+            document.images["ace1"].src="/Users/prakshi/Downloads/Card-Game/img/5_of_spade.png";
+            document.images["img4s"].src="/Users/prakshi/Downloads/Card-Game/img/card_reverse.png";
+            card1s++;
+        }
+        else{
+           alert("wrong choice");
+        }
+        
+        }
+
+        const hi5s=()=>{
+        if(card1s==5)
+        {
+            document.images["ace1"].src="/Users/prakshi/Downloads/Card-Game/img/6_of_spade.png";
+            document.images["img5s"].src="/Users/prakshi/Downloads/Card-Game/img/card_reverse.png";
+            card1s++;
+        }
+        else{
+           alert("wrong choice");
+        }
+
+        }
+
+        const hi6s=()=>{
+        if(card1s==6)
+        {
+            document.images["ace1"].src="/Users/prakshi/Downloads/Card-Game/img/7_of_spade.png";
+            document.images["img6s"].src="/Users/prakshi/Downloads/Card-Game/img/card_reverse.png";
+            card1s++;
+        }
+        else{
+           alert("wrong choice");
+        }
+        
+        }
+
+        const hi7s=()=>{
+        if(card1s==7)
+        {
+            document.images["ace1"].src="/Users/prakshi/Downloads/Card-Game/img/8_of_spade.png";
+            document.images["img7s"].src="/Users/prakshi/Downloads/Card-Game/img/card_reverse.png";
+            card1s++;
+        }
+        else{
+           alert("wrong choice");
+        }
+
+        }
+
+        const hi8s=()=>{
+        if(card1s==8)
+        {
+            document.images["ace1"].src="/Users/prakshi/Downloads/Card-Game/img/9_of_spade.png";
+            document.images["img8s"].src="/Users/prakshi/Downloads/Card-Game/img/card_reverse.png";
+            card1s++;
+        }
+        else{
+           alert("wrong choice");
+        }
+        
+        }
+    
+        const hi9s=()=>{
+        if(card1s==9)
+        {
+            document.images["ace1"].src="/Users/prakshi/Downloads/Card-Game/img/10_of_spade.png";
+            document.images["img9s"].src="/Users/prakshi/Downloads/Card-Game/img/card_reverse.png";
+            card1s++;
+        }
+        else{
+           alert("wrong choice");
+        }
+        
+        }
+  
+        const hi10s=()=>{
+        if(card1s==10)
+        {
+            document.images["ace1"].src="/Users/prakshi/Downloads/Card-Game/img/jack_of_spade.png";
+            document.images["img10s"].src="/Users/prakshi/Downloads/Card-Game/img/card_reverse.png";
+            card1s++;
+        }
+        else{
+           alert("wrong choice");
+        }
+        
+        }
+    
+        const hi11s=()=>{
+        if(card1s==11)
+        {
+            document.images["ace1"].src="/Users/prakshi/Downloads/Card-Game/img/queen_of_spade.png";
+            document.images["img11s"].src="/Users/prakshi/Downloads/Card-Game/img/card_reverse.png";
+            card1s++;
+        }
+        else{
+           alert("wrong choice");
+        }
+        
+        }
+        
+        const hi12s=()=>{
+        if(card1s==12)
+        {
+            document.images["ace1"].src="/Users/prakshi/Downloads/Card-Game/img/king_of_spade.png";
+            document.images["img12s"].src="/Users/prakshi/Downloads/Card-Game/img/card_reverse.png";
+            card1s++;
+        }
+        else{
+           alert("wrong choice");
+        }
+        
+        }
+
+
+        const hi1d=()=>{
+        if(card1d==1)
+        {
+            document.images["ace2"].src="/Users/prakshi/Downloads/Card-Game/img/2_of_diamond.png";
+            document.images["img1d"].src="/Users/prakshi/Downloads/Card-Game/img/card_reverse.png";
+            card1d++;   
+        }
+        else{
+            alert("wrong choice");    
+        }
+        
+        }
+
+        const hi2d=()=>{
+        if(card1d==2)
+        {
+            document.images["ace2"].src="/Users/prakshi/Downloads/Card-Game/img/3_of_diamond.png";
+            document.images["img2d"].src="/Users/prakshi/Downloads/Card-Game/img/card_reverse.png";
+            card1d++;   
+        }
+        else{
+           alert("wrong choice");
+        }
+        
+        }
+
+        const hi3d=()=>{
+        if(card1d==3)
+        {
+            document.images["ace2"].src="/Users/prakshi/Downloads/Card-Game/img/4_of_diamond.png";
+            document.images["img3d"].src="/Users/prakshi/Downloads/Card-Game/img/card_reverse.png";
+            card1d++;   
+        }
+        else{
+           alert("wrong choice");
+        }
+        
+        }
+
+        const hi4d=()=>{
+        if(card1d==4)
+        {
+            document.images["ace2"].src="/Users/prakshi/Downloads/Card-Game/img/5_of_diamond.png";
+            document.images["img4d"].src="/Users/prakshi/Downloads/Card-Game/img/card_reverse.png";
+            card1d++;
+        }
+        else{
+           alert("wrong choice");
+        }
+        
+        }
+
+        const hi5d=()=>{
+        if(card1d==5)
+        {
+            document.images["ace2"].src="/Users/prakshi/Downloads/Card-Game/img/6_of_diamond.png";
+            document.images["img5d"].src="/Users/prakshi/Downloads/Card-Game/img/card_reverse.png";
+            card1d++;
+        }
+        else{
+           alert("wrong choice");
+        }
+
+        }
+
+        const hi6d=()=>{
+        if(card1d==6)
+        {
+            document.images["ace2"].src="/Users/prakshi/Downloads/Card-Game/img/7_of_diamond.png";
+            document.images["img6d"].src="/Users/prakshi/Downloads/Card-Game/img/card_reverse.png";
+            card1d++;
+        }
+        else{
+           alert("wrong choice");
+        }
+        
+        }
+
+        const hi7d=()=>{
+        if(card1d==7)
+        {
+            document.images["ace2"].src="/Users/prakshi/Downloads/Card-Game/img/8_of_diamond.png";
+            document.images["img7d"].src="/Users/prakshi/Downloads/Card-Game/img/card_reverse.png";
+            card1d++;
+        }
+        else{
+           alert("wrong choice");
+        }
+
+        }
+
+        const hi8d=()=>{
+        if(card1d==8)
+        {
+            document.images["ace2"].src="/Users/prakshi/Downloads/Card-Game/img/9_of_diamond.png";
+            document.images["img8d"].src="/Users/prakshi/Downloads/Card-Game/img/card_reverse.png";
+            card1d++;
+        }
+        else{
+           alert("wrong choice");
+        }
+        
+        }
+    
+        const hi9d=()=>{
+        if(card1d==9)
+        {
+            document.images["ace2"].src="/Users/prakshi/Downloads/Card-Game/img/10_of_diamond.png";
+            document.images["img9d"].src="/Users/prakshi/Downloads/Card-Game/img/card_reverse.png";
+            card1d++;
+        }
+        else{
+           alert("wrong choice");
+        }
+        
+        }
+  
+        const hi10d=()=>{
+        if(card1d==10)
+        {
+            document.images["ace2"].src="/Users/prakshi/Downloads/Card-Game/img/jack_of_diamond.png";
+            document.images["img10d"].src="/Users/prakshi/Downloads/Card-Game/img/card_reverse.png";
+            card1d++;
+        }
+        else{
+           alert("wrong choice");
+        }
+        
+        }
+    
+        const hi11d=()=>{
+        if(card1d==11)
+        {
+            document.images["ace2"].src="/Users/prakshi/Downloads/Card-Game/img/queen_of_diamond.png";
+            document.images["img11d"].src="/Users/prakshi/Downloads/Card-Game/img/card_reverse.png";
+            card1d++;
+        }
+        else{
+           alert("wrong choice");
+        }
+        
+        }
+        
+        const hi12d=()=>{
+        if(card1d==12)
+        {
+            document.images["ace2"].src="/Users/prakshi/Downloads/Card-Game/img/king_of_diamond.png";
+            document.images["img12d"].src="/Users/prakshi/Downloads/Card-Game/img/card_reverse.png";
+            card1d++;
+        }
+        else{
+           alert("wrong choice");
+        }
+        
+        }
+    
+
+        const hi1c=()=>{
+        if(card1c==1)
+        {
+            document.images["ace3"].src="/Users/prakshi/Downloads/Card-Game/img/2_of_club.png";
+            document.images["img1c"].src="/Users/prakshi/Downloads/Card-Game/img/card_reverse.png";
+            card1c++;   
+        }
+        else{
+            alert("wrong choice");    
+        }
+        
+        }
+
+        const hi2c=()=>{
+        if(card1c==2)
+        {
+            document.images["ace3"].src="/Users/prakshi/Downloads/Card-Game/img/3_of_club.png";
+            document.images["img2c"].src="/Users/prakshi/Downloads/Card-Game/img/card_reverse.png";
+            card1c++;
+        }
+        else{
+           alert("wrong choice");
+        }
+        
+        }
+
+        const hi3c=()=>{
+        if(card1c==3)
+        {
+            document.images["ace3"].src="/Users/prakshi/Downloads/Card-Game/img/4_of_club.png";
+            document.images["img3c"].src="/Users/prakshi/Downloads/Card-Game/img/card_reverse.png";
+            card1c++;
+        }
+        else{
+           alert("wrong choice");
+        }
+        
+        }
+
+        const hi4c=()=>{
+        if(card1c==4)
+        {
+            document.images["ace3"].src="/Users/prakshi/Downloads/Card-Game/img/5_of_club.png";
+            document.images["img4c"].src="/Users/prakshi/Downloads/Card-Game/img/card_reverse.png";
+            card1c++;
+        }
+        else{
+           alert("wrong choice");
+        }
+        
+        }
+
+        const hi5c=()=>{
+        if(card1c==5)
+        {
+            document.images["ace3"].src="/Users/prakshi/Downloads/Card-Game/img/6_of_club.png";
+            document.images["img5c"].src="/Users/prakshi/Downloads/Card-Game/img/card_reverse.png";
+            card1c++;
+        }
+        else{
+           alert("wrong choice");
+        }
+
+        }
+
+        const hi6c=()=>{
+        if(card1c==6)
+        {
+            document.images["ace3"].src="/Users/prakshi/Downloads/Card-Game/img/7_of_club.png";
+            document.images["img6c"].src="/Users/prakshi/Downloads/Card-Game/img/card_reverse.png";
+            card1c++;
+        }
+        else{
+           alert("wrong choice");
+        }
+        
+        }
+
+        const hi7c=()=>{
+        if(card1c==7)
+        {
+            document.images["ace3"].src="/Users/prakshi/Downloads/Card-Game/img/8_of_club.png";
+            document.images["img7c"].src="/Users/prakshi/Downloads/Card-Game/img/card_reverse.png";
+            card1c++;
+        }
+        else{
+           alert("wrong choice");
+        }
+
+        }
+
+        const hi8c=()=>{
+        if(card1c==8)
+        {
+            document.images["ace3"].src="/Users/prakshi/Downloads/Card-Game/img/9_of_club.png";
+            document.images["img8c"].src="/Users/prakshi/Downloads/Card-Game/img/card_reverse.png";
+            card1c++;
+        }
+        else{
+           alert("wrong choice");
+        }
+        
+        }
+    
+        const hi9c=()=>{
+        if(card1c==9)
+        {
+            document.images["ace3"].src="/Users/prakshi/Downloads/Card-Game/img/10_of_club.png";
+            document.images["img9c"].src="/Users/prakshi/Downloads/Card-Game/img/card_reverse.png";
+            card1c++;
+        }
+        else{
+           alert("wrong choice");
+        }
+        
+        }
+  
+        const hi10c=()=>{
+        if(card1c==10)
+        {
+            document.images["ace3"].src="/Users/prakshi/Downloads/Card-Game/img/jack_of_club.png";
+            document.images["img10c"].src="/Users/prakshi/Downloads/Card-Game/img/card_reverse.png";
+            card1c++;
+        }
+        else{
+           alert("wrong choice");
+        }
+        
+        }
+    
+        const hi11c=()=>{
+        if(card1c==11)
+        {
+            document.images["ace3"].src="/Users/prakshi/Downloads/Card-Game/img/queen_of_club.png";
+            document.images["img11c"].src="/Users/prakshi/Downloads/Card-Game/img/card_reverse.png";
+            card1c++;
+        }
+        else{
+           alert("wrong choice");
+        }
+        
+        }
+        
+        const hi12c=()=>{
+        if(card1c==12)
+        {
+            document.images["ace3"].src="/Users/prakshi/Downloads/Card-Game/img/king_of_club.png";
+            document.images["img12c"].src="/Users/prakshi/Downloads/Card-Game/img/card_reverse.png";
+            card1c++;
+        }
+        else{
+           alert("wrong choice");
+        }
+        
+        }
+
+
+        const hi1h=()=>{
+        if(card1h==1)
+        {
+            document.images["ace4"].src="/Users/prakshi/Downloads/Card-Game/img/2_of_heart.png";
+            document.images["img1h"].src="/Users/prakshi/Downloads/Card-Game/img/card_reverse.png";
+            card1h++;   
+        }
+        else{
+            alert("wrong choice");    
+        }
+        
+        }
+
+        const hi2h=()=>{
+        if(card1h==2)
+        {
+            document.images["ace4"].src="/Users/prakshi/Downloads/Card-Game/img/3_of_heart.png";
+            document.images["img2h"].src="/Users/prakshi/Downloads/Card-Game/img/card_reverse.png";
+            card1h++;
+        }
+        else{
+           alert("wrong choice");
+        }
+        
+        }
+
+        const hi3h=()=>{
+        if(card1h==3)
+        {
+            document.images["ace4"].src="/Users/prakshi/Downloads/Card-Game/img/4_of_heart.png";
+            document.images["img3h"].src="/Users/prakshi/Downloads/Card-Game/img/card_reverse.png";
+            card1h++;
+        }
+        else{
+           alert("wrong choice");
+        }
+        
+        }
+
+        const hi4h=()=>{
+        if(card1h==4)
+        {
+            document.images["ace4"].src="/Users/prakshi/Downloads/Card-Game/img/5_of_heart.png";
+            document.images["img4h"].src="/Users/prakshi/Downloads/Card-Game/img/card_reverse.png";
+            card1h++;
+        }
+        else{
+           alert("wrong choice");
+        }
+        
+        }
+
+        const hi5h=()=>{
+        if(card1h==5)
+        {
+            document.images["ace4"].src="/Users/prakshi/Downloads/Card-Game/img/6_of_heart.png";
+            document.images["img5h"].src="/Users/prakshi/Downloads/Card-Game/img/card_reverse.png";
+            card1h++;
+        }
+        else{
+           alert("wrong choice");
+        }
+
+        }
+
+        const hi6h=()=>{
+        if(card1h==6)
+        {
+            document.images["ace4"].src="/Users/prakshi/Downloads/Card-Game/img/7_of_heart.png";
+            document.images["img6h"].src="/Users/prakshi/Downloads/Card-Game/img/card_reverse.png";
+            card1h++;
+        }
+        else{
+           alert("wrong choice");
+        }
+        
+        }
+
+        const hi7h=()=>{
+        if(card1h==7)
+        {
+            document.images["ace4"].src="/Users/prakshi/Downloads/Card-Game/img/8_of_heart.png";
+            document.images["img7h"].src="/Users/prakshi/Downloads/Card-Game/img/card_reverse.png";
+            card1h++;
+        }
+        else{
+           alert("wrong choice");
+        }
+
+        }
+
+        const hi8h=()=>{
+        if(card1h==8)
+        {
+            document.images["ace4"].src="/Users/prakshi/Downloads/Card-Game/img/9_of_heart.png";
+            document.images["img8h"].src="/Users/prakshi/Downloads/Card-Game/img/card_reverse.png";
+            card1h++;
+        }
+        else{
+           alert("wrong choice");
+        }
+        
+        }
+    
+        const hi9h=()=>{
+        if(card1h==9)
+        {
+            document.images["ace4"].src="/Users/prakshi/Downloads/Card-Game/img/10_of_heart.png";
+            document.images["img9h"].src="/Users/prakshi/Downloads/Card-Game/img/card_reverse.png";
+            card1h++;
+        }
+        else{
+           alert("wrong choice");
+        }
+        
+        }
+  
+        const hi10h=()=>{
+        if(card1h==10)
+        {
+            document.images["ace4"].src="/Users/prakshi/Downloads/Card-Game/img/jack_of_heart.png";
+            document.images["img10h"].src="/Users/prakshi/Downloads/Card-Game/img/card_reverse.png";
+            card1h++;
+        }
+        else{
+           alert("wrong choice");
+        }
+        
+        }
+    
+        const hi11h=()=>{
+        if(card1h==11)
+        {
+            document.images["ace4"].src="/Users/prakshi/Downloads/Card-Game/img/queen_of_heart.png";
+            document.images["img11h"].src="/Users/prakshi/Downloads/Card-Game/img/card_reverse.png";
+            card1h++;
+        }
+        else{
+           alert("wrong choice");
+        }
+        
+        }
+        
+        const hi12h=()=>{
+        if(card1h==12)
+        {
+            document.images["ace4"].src="/Users/prakshi/Downloads/Card-Game/img/king_of_heart.png";
+            document.images["img12h"].src="/Users/prakshi/Downloads/Card-Game/img/card_reverse.png";
+            card1h++;
+        }
+        else{
+           alert("wrong choice");
+        }
+        
+        }
+</script>
+
+<body>
+	<section class="seq">
+        <div class="sequence">
+            <img class="ace" src="/Users/prakshi/Downloads/Card-Game/img/ace_of_spade.png" id="ace1" width="150px"/>
+        </div>
+        <div class="sequence">
+            <img class="ace" src="/Users/prakshi/Downloads/Card-Game/img/ace_of_diamond.png" id="ace2" width="150px"/>
+        </div>
+        <div class="sequence">
+            <img class="ace" src="/Users/prakshi/Downloads/Card-Game/img/ace_of_club.png" id="ace3" width="150px"/>
+        </div>
+        <div class="sequence">
+            <img class="ace" src="/Users/prakshi/Downloads/Card-Game/img/ace_of_heart.png" id="ace4" width="150px"/>
+        </div>
+  </section>
+   
+  <section class="memory-game">
+        <div class="memory-card">
+            <img class="back-face" src="/Users/prakshi/Downloads/Card-Game/img/2_of_spade.png" alt="front" width="150px" id="img1s" name="img1s" onclick="hi1s();" />
+        </div>
+
+        <div class="memory-card">
+            <img class="back-face" src="/Users/prakshi/Downloads/Card-Game/img/3_of_spade.png" alt="front" width="150px" id="img2s" name="img2s" onclick="hi2s();"/>
+        </div>
+
+        <div class="memory-card">
+            <img class="back-face" src="/Users/prakshi/Downloads/Card-Game/img/4_of_spade.png" alt="front" width="150px" id="img3s" name="img3s" onclick="hi3s();" />    
+        </div>
+
+        <div class="memory-card">
+            <img class="back-face" src="/Users/prakshi/Downloads/Card-Game/img/5_of_spade.png" alt="front" width="150px" id="img4s" name="img4s" onclick="hi4s();"/>
+        </div>
+
+        <div class="memory-card">
+            <img class="back-face" src="/Users/prakshi/Downloads/Card-Game/img/6_of_spade.png" alt="front" width="150px" id="img5s" name="img5s" onclick="hi5s();"/>
+        </div>
+
+        <div class="memory-card">
+            <img class="back-face" src="/Users/prakshi/Downloads/Card-Game/img/7_of_spade.png" alt="front" width="150px" id="img6s" name="img6s" onclick="hi6s();"/>
+        </div>
+
+        <div class="memory-card">
+            <img class="back-face" src="/Users/prakshi/Downloads/Card-Game/img/8_of_spade.png" alt="front" width="150px" id="img7s" name="img7s" onclick="hi7s();"/>
+        </div>
+
+        <div class="memory-card">
+            <img class="back-face" src="/Users/prakshi/Downloads/Card-Game/img/9_of_spade.png" alt="front" width="150px" id="img8s" name="img8s" onclick="hi8s();"/>
+        </div>
+
+        <div class ="memory-card">
+            <img class="back-face" src="/Users/prakshi/Downloads/Card-Game/img/10_of_spade.png" alt="front" width="150px"id="img9s" name="img9s" onclick="hi9s();"/>
+        </div>
+
+        <div class="memory-card">
+            <img class="back-face" src="/Users/prakshi/Downloads/Card-Game/img/jack_of_spade.png" alt="front" width="150px"id="img10s" name="img10s" onclick="hi10s();"/>
+        </div>
+
+        <div class="memory-card">
+            <img class="back-face" src="/Users/prakshi/Downloads/Card-Game/img/queen_of_spade.png" alt="front" width="150px" id="img11s" name="img11s" onclick="hi11s();"/>
+        </div>
+
+        <div class="memory-card">
+            <img class="back-face" src="/Users/prakshi/Downloads/Card-Game/img/king_of_spade.png" alt="front" width="150px" id="img12s" name="img12s" onclick="hi12s();"/>
+        </div>
+
+
+        <div class="memory-card">
+            <img class="back-face" src="/Users/prakshi/Downloads/Card-Game/img/2_of_diamond.png" alt="front" width="150px" id="img1d" name="img1d" onclick="hi1d();" />
+        </div>
+
+        <div class="memory-card">
+            <img class="back-face" src="/Users/prakshi/Downloads/Card-Game/img/3_of_diamond.png" alt="front" width="150px" id="img2d" name="img2d" onclick="hi2d();"/>
+        </div>
+
+        <div class="memory-card">
+            <img class="back-face" src="/Users/prakshi/Downloads/Card-Game/img/4_of_diamond.png" alt="front" width="150px" id="img3d" name="img3d" onclick="hi3d();" />    
+        </div>
+    
+        <div class="memory-card">
+            <img class="back-face" src="/Users/prakshi/Downloads/Card-Game/img/5_of_diamond.png" alt="front" width="150px" id="img4d"name="img4d" onclick="hi4d();"/>
+        </div>
+
+        <div class="memory-card">
+            <img class="back-face" src="/Users/prakshi/Downloads/Card-Game/img/6_of_diamond.png" alt="front" width="150px" id="img5d"name="img5d" onclick="hi5d();"/>
+        </div>
+    
+        <div class="memory-card">
+            <img class="back-face" src="/Users/prakshi/Downloads/Card-Game/img/7_of_diamond.png" alt="front" width="150px" id="img6d" name="img6d" onclick="hi6d();"/>
+        </div>
+
+        <div class="memory-card">
+            <img class="back-face" src="/Users/prakshi/Downloads/Card-Game/img/8_of_diamond.png" alt="front" width="150px" id="img7d" name="img7d" onclick="hi7d();"/>
+        </div>
+    
+        <div class="memory-card">
+            <img class="back-face" src="/Users/prakshi/Downloads/Card-Game/img/9_of_diamond.png" alt="front" width="150px" id="img8d" name="img8d" onclick="hi8d();"/>
+        </div>
+
+        <div class="memory-card">
+            <img class="back-face" src="/Users/prakshi/Downloads/Card-Game/img/10_of_diamond.png" alt="front" width="150px"id="img9d" name="img9d" onclick="hi9d();"/>
+        </div>
+    
+        <div class="memory-card">
+            <img class="back-face" src="/Users/prakshi/Downloads/Card-Game/img/jack_of_diamond.png" alt="front" width="150px"id="img10d" name="img10d" onclick="hi10d();"/>
+        </div>
+    
+        <div class="memory-card">
+            <img class="back-face" src="/Users/prakshi/Downloads/Card-Game/img/queen_of_diamond.png" alt="front" width="150px" id="img11d" name="img11d" onclick="hi11d();"/>
+        </div>
+    
+        <div class="memory-card">
+            <img class="back-face" src="/Users/prakshi/Downloads/Card-Game/img/king_of_diamond.png" alt="front" width="150px" id="img12d" name="img12d" onclick="hi12d();"/>
+        </div>
+
+
+        <div class="memory-card">
+            <img class="back-face" src="/Users/prakshi/Downloads/Card-Game/img/2_of_club.png" alt="front" width="150px" id="img1c" name="img1c" onclick="hi1c();" />
+        </div>
+
+        <div class="memory-card">
+            <img class="back-face" src="/Users/prakshi/Downloads/Card-Game/img/3_of_club.png" alt="front" width="150px" id="img2c" name="img2c" onclick="hi2c();"/>
+        </div>
+
+        <div class="memory-card">
+            <img class="back-face" src="/Users/prakshi/Downloads/Card-Game/img/4_of_club.png" alt="front" width="150px" id="img3c" name="img3c" onclick="hi3c();" />    
+        </div>
+        
+        <div class="memory-card">
+            <img class="back-face" src="/Users/prakshi/Downloads/Card-Game/img/5_of_club.png" alt="front" width="150px" id="img4c"name="img4c"  onclick="hi4c();"/>
+        </div>
+    
+        <div class="memory-card">
+            <img class="back-face" src="/Users/prakshi/Downloads/Card-Game/img/6_of_club.png" alt="front" width="150px" id="img5c"name="img5c" onclick="hi5c();"/>
+        </div>
+        
+        <div class="memory-card">
+            <img class="back-face" src="/Users/prakshi/Downloads/Card-Game/img/7_of_club.png" alt="front" width="150px" id="img6c" name="img6c" onclick="hi6c();"/>
+        </div>
+
+        <div class="memory-card">
+            <img class="back-face" src="/Users/prakshi/Downloads/Card-Game/img/8_of_club.png" alt="front" width="150px" id="img7c" name="img7c" onclick="hi7c();"/>
+        </div>
+        
+        <div class="memory-card">
+            <img class="back-face" src="/Users/prakshi/Downloads/Card-Game/img/9_of_club.png" alt="front" width="150px" id="img8c" name="img8c" onclick="hi8c();"/>
+        </div>
+
+        <div class="memory-card">
+            <img class="back-face" src="/Users/prakshi/Downloads/Card-Game/img/10_of_club.png" alt="front" width="150px"id="img9c" name="img9c" onclick="hi9c();"/>
+        </div>
+        
+        <div class="memory-card">
+            <img class="back-face" src="/Users/prakshi/Downloads/Card-Game/img/jack_of_club.png" alt="front" width="150px"id="img10c" name="img10c" onclick="hi10c();"/>
+        </div>
+        
+        <div class="memory-card">
+            <img class="back-face" src="/Users/prakshi/Downloads/Card-Game/img/queen_of_club.png" alt="front" width="150px" id="img11c" name="img11c" onclick="hi11c();"/>
+        </div>
+        
+        <div class="memory-card">
+            <img class="back-face" src="/Users/prakshi/Downloads/Card-Game/img/king_of_club.png" alt="front" width="150px" id="img12c" name="img12c" onclick="hi12c();"/>
+        </div>
+
+        
+        <div class="memory-card">
+            <img class="back-face" src="/Users/prakshi/Downloads/Card-Game/img/2_of_heart.png" alt="front" width="150px" id="img1h" name="img1h" onclick="hi1h();" />
+        </div>
+
+        <div class="memory-card">
+            <img class="back-face" src="/Users/prakshi/Downloads/Card-Game/img/3_of_heart.png" alt="front" width="150px" id="img2h" name="img2h" onclick="hi2h();"/>
+        </div>
+
+        <div class="memory-card">
+            <img class="back-face" src="/Users/prakshi/Downloads/Card-Game/img/4_of_heart.png" alt="front" width="150px" id="img3h" name="img3h" onclick="hi3h();" />    
+        </div>
+    
+        <div class="memory-card">
+            <img class="back-face" src="/Users/prakshi/Downloads/Card-Game/img/5_of_heart.png" alt="front" width="150px" id="img4h" name="img4h" onclick="hi4h();"/>
+        </div>
+
+        <div class="memory-card">
+            <img class="back-face" src="/Users/prakshi/Downloads/Card-Game/img/6_of_heart.png" alt="front" width="150px" id="img5h" name="img5h" onclick="hi5h();"/>
+        </div>
+    
+        <div class="memory-card">
+            <img class="back-face" src="/Users/prakshi/Downloads/Card-Game/img/7_of_heart.png" alt="front" width="150px" id="img6h" name="img6h" onclick="hi6h();"/>
+        </div>
+
+        <div class="memory-card">
+            <img class="back-face" src="/Users/prakshi/Downloads/Card-Game/img/8_of_heart.png" alt="front" width="150px" id="img7h" name="img7h" onclick="hi7h();"/>
+        </div>
+    
+        <div class="memory-card">
+            <img class="back-face" src="/Users/prakshi/Downloads/Card-Game/img/9_of_heart.png" alt="front" width="150px" id="img8h" name="img8h" onclick="hi8h();"/>
+        </div>
+
+        <div class="memory-card">
+            <img class="back-face" src="/Users/prakshi/Downloads/Card-Game/img/10_of_heart.png" alt="front" width="150px"id="img9h" name="img9h" onclick="hi9h();"/>
+        </div>
+    
+        <div class="memory-card">
+            <img class="back-face" src="/Users/prakshi/Downloads/Card-Game/img/jack_of_heart.png" alt="front" width="150px"id="img10h" name="img10h" onclick="hi10h();"/>
+        </div>
+    
+        <div class="memory-card">
+            <img class="back-face" src="/Users/prakshi/Downloads/Card-Game/img/queen_of_heart.png" alt="front" width="150px" id="img11h" name="img11h" onclick="hi11h();"/>
+        </div>
+    
+        <div class="memory-card">
+            <img class="back-face" src="/Users/prakshi/Downloads/Card-Game/img/king_of_heart.png" alt="front" width="150px" id="img12h" name="img12h" onclick="hi12h();"/>
+        </div>
+  </section>
+</body>
+</html>
